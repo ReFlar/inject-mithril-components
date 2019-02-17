@@ -5,7 +5,7 @@ import FlarumComponentElement from './FlarumComponentElement';
 
 window.customElements.define('flarum-component', FlarumComponentElement);
 
-app.initializers.add('reflar/inject-js-components', () => {
+app.initializers.add('reflar/inject-mithril-components', () => {
     override(DiscussionList.prototype, 'loadResults', function(org) {
         const preloadedDiscussions = app.preloadedApiDocument();
 

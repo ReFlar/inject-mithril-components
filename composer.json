@@ -1,5 +1,5 @@
 {
-  "name": "reflar/inject-js-components",
+  "name": "reflar/inject-mithril-components",
   "description": "Inject Mithril components into your pages using native HTML",
   "keywords": [
     "flarum"
