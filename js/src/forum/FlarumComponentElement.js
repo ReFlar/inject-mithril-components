@@ -1,3 +1,5 @@
+import '@webcomponents/custom-elements'
+
 import JSON5 from 'JSON5';
 
 export default class FlarumComponentElement extends HTMLElement {
@@ -11,8 +13,6 @@ export default class FlarumComponentElement extends HTMLElement {
         const Component = flarum.core.compat[componentName];
 
         if (Component == null) throw new Error(`${componentName} does not exist or isn't public`);
-
-        console.log(Component);
 
         const attributes = this.getAttributeNames().reduce((obj, str) => {
             if (str === 'data-component') return obj;

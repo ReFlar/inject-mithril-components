@@ -15,7 +15,12 @@ app.initializers.add('reflar/inject-mithril-components', () => {
     });
 
     extend(DiscussionList.prototype, 'requestParams', function(params) {
+        const query = params.filter && params.filter.q;
+
         Object.assign(params, this.props.params);
+
+        if (!params.filter) params.filter = {};
+        if (query && params.filter.q !== query) params.filter.q = `${query} ${params.filter.q || ''}`.trim();
     });
 
     override(DiscussionList.prototype, 'parseResults', function(org, results) {
