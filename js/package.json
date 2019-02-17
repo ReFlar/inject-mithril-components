@@ -1,5 +1,5 @@
 {
-  "name": "@reflar/inject-js-components",
+  "name": "@reflar/inject-mithril-components",
   "version": "0.0.0",
   "private": true,
   "dependencies": {

@@ -23,7 +23,7 @@
   },
   "extra": {
     "flarum-extension": {
-      "title": "ReFlar Inject JS Components",
+      "title": "ReFlar Inject Mithril Components",
       "icon": {
         "name": "fas fa-code",
         "backgroundColor": "#263238",
