@@ -8,19 +8,25 @@ window.customElements.define('flarum-component', FlarumComponentElement);
 app.initializers.add('reflar/inject-mithril-components', () => {
     override(DiscussionList.prototype, 'loadResults', function(org) {
         const preloadedDiscussions = app.preloadedApiDocument();
+        const discussion = preloadedDiscussions && preloadedDiscussions[0];
 
-        if (!preloadedDiscussions || !preloadedDiscussions.data || !preloadedDiscussions.data.type !== 'discussions') app.data.apiDocument = null;
+        if (!discussion || !discussion.data || discussion.data.type !== 'discussions') app.data.apiDocument = null;
 
         return org();
     });
 
     extend(DiscussionList.prototype, 'requestParams', function(params) {
         const query = params.filter && params.filter.q;
+        const sort = params.sort;
 
         Object.assign(params, this.props.params);
 
-        if (!params.filter) params.filter = {};
-        if (query && params.filter.q !== query) params.filter.q = `${query} ${params.filter.q || ''}`.trim();
+        if (query) {
+            if (!params.filter) params.filter = {};
+            if (params.filter.q !== query) params.filter.q = `${query} ${params.filter.q || ''}`.trim();
+        }
+
+        params.sort = sort || params.sort;
     });
 
     override(DiscussionList.prototype, 'parseResults', function(org, results) {
